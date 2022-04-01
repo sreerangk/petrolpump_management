@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PETROLPUMP</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+      
+    .fa {
+      padding: 10px;
+      font-size: 20px;
+      width: 35px;
+      text-align: center;
+      text-decoration: none;
+      margin: 4px 1px;
+      border-radius: 40%;
+    }
+    
+    .fa:hover {
+        opacity: 0.7;
+    }
+    
+    
+    .fa-linkedin {
+      background: #007bb5;
+      color: white;
+    }
+    .nav_head2{
+      position:relative; left:600px; top:2px; 
+    }
+    .nav_head3{
+      position:relative; left:620px; top:2px; 
+    }
+    .nav_3{
+      position:relative; left:620px; top:2px; 
+    }
+    .nav1 img{
+      height: 70px;
+    }
+
+    
+    </style>
+</head>
+
+
+<body>
+<div class="nav1">
+
+<a href="{% url 'index' %}"><img class="nav_head" src="https://iocl.com/assets/images/logo.gif" ></a>
+<img class="nav_head2" src="https://www.petrolpumpdealerchayan.in/assets/images/logoimg.jpg ">
+<img class="nav_head3" src="https://www.bharatpetroleum.in/images/bh-gas-logo.png">
+<img class="nav_3" src="https://www.mdpi.com/img/design/mdpi-pub-logo-blue-small4.png?fff78193ca41c286 ">
+</div>
+
+ <!-- nav_bar -->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-md-3">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}  
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">logout</a>
+        </li>
+        <li class="nav-item ">
+       
+          <a class="nav-link" href="{% url 'Service' %}">Service</a>
+        </div>
+      </li>
+        
+        {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+        </li>
+        <li class="nav-item ">
+       
+          <a class="nav-link" href="{% url 'Service' %}">Service</a>
+        </div>
+      </li>
+        {% endif %}
+      </ul>
+ 
+    </div>
+
+
+ 
+      
+    
+        {% if user.is_authenticated %}
+        {% if data.dp %} 
+       
+        <a href="{% url 'userpro' %}"><img src="{{ data.dp.url }}"  class="mr-3 rounded-circle"  style="height:40px; width:40px" alt="dp"></a>
+          
+        {% else %}
+        <a href="{% url 'userpro' %}"><img src="{% static 'img\O.jpg' %}"  class="mr-3 rounded-circle" height="30" width="30" alt="dp"></a>
+
+        {% endif %}
+        {% endif %}
+
+  </nav>
+{% block index  %} 
+{% endblock %}
+{% block login %}
+{% endblock %}
+{% block sighnup %}
+{% endblock %}
+{% block userpro %}
+{% endblock %}
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+ 
+<!-- Remove the container if you want to extend the Footer to full width. -->
+
+
+  <footer class="text-center text-lg-start " style="background-color: black;">
+    <div class="container d-flex justify-content-center py-5">
+      <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <i class="fab fa-youtube"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <i class="fab fa-instagram"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <i class="fab fa-twitter"></i>
+      </button>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2020 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">indianoil@111.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  
+
+<!-- End of .container -->
+    
+</body>
+
+</html>
+

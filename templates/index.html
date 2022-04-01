@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block index  %}
+{% load static %}
+
+
+
+
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .collection__box{
+    background-color: #32a852;
+  }
+
+
+.collection_01 {
+  width: auto;
+  height: 180px;
+ 
+}
+#card1{
+  transition: transform .2s;
+  border-color: bisque;
+  
+}
+#card1 img:hover{
+  transform: scale(1.05);
+ 
+}
+
+
+
+
+
+</style>
+
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://hpcladmin.hindustanpetroleum.com/img/UploadedFiles/HomeBanner/EnglishBanners/1e3ceee9e4e342a79878d19961029d78.jpg" alt="Los Angeles" width="1100" height="500">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Welcome to the World of HPCL</h5>
+        <p>For millions of Indians, we are delivering happiness by transforming the nation’s landscape with our energy solutions across a spectrum of needs, everyday. </p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://hpcladmin.hindustanpetroleum.com/img/UploadedFiles/HomeBanner/EnglishBanners/a618f429bc9c4ace8c312d336743cfbe.jpg" alt="Chicago" width="1100" height="500">
+    </div>
+    <div class="carousel-item">
+      <img src="https://hpcladmin.hindustanpetroleum.com/img/UploadedFiles/HomeBanner/EnglishBanners/d628fcf0e592449488fcc4689c27c10f.jpg" alt="New York" width="1100" height="500">
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+      <!--====================left bottom sec start=============-->
+      <div class="maincontent px-5">    
+        <div class="homemaintxt"> 
+
+            <div class="homenotice"><strong style="font-size: 19px;">Notice :</strong> <marquee id="scroll_news" direction="left" scrollamount="" onmouseover="this.setAttribute('scrollamount', 0, 0);" onmouseout="this.setAttribute('scrollamount', 4, 0);" scrolldelay="">
+                    <div style="font-size: 19px; color: red;" onmouseover="document.getElementById('scroll_news').stop();" onmouseout="document.getElementById('scroll_news').start();">
+                        Applicants are advised to make all payments like application fees, initial security deposit only through this website. Oil companies are not responsible for any payment made through any other mode/website.
+                    </div></marquee></div> 
+
+            <h2>Dealerships for Regular & Rural Retail Outlets (Petrol Pump)</h2>
+            <p>Network expansion has been an important business activity of PSU Oil Marketing Companies (OMCs) for increasing the reach of petroleum products across the country. 
+
+        </div> 
+        <div class="homequery">
+        
+            <div class="homequery">
+             
+              <ul>
+                  <li class="divisionlist"><span>For queries: Contact - </span> <a href="https://www.petrolpumpdealerchayan.in/area-offices" target="_blank">Divisional Offices (IOC) / Territory Offices (BPC) / Regional Offices (HPC)</a></li>
+                  <li><a href="https://www.petrolpumpdealerchayan.in/assets/pdfs/Brochure_for_filling_application.pdf" target="_blank">Brochure for selection of retail outlet dealers (English)</a></li>
+
+                  <li><a href="https://www.petrolpumpdealerchayan.in/assets/pdfs/Brochure 24 11 2018 -compiled -final.pdf" target="_blank">Brochure for selection of retail outlet dealers (Hindi)</a></li>
+                  <li><a href="https://www.petrolpumpdealerchayan.in/assets/pdfs/Notice - Attention of Applicants.pdf" target="_blank"><b style="color: red; font-size: 14px;">Notice</b> <b>- Attention of Applicants 
+                          </b></a></li>
+              </ul>
+              </div>
+          </div>
+    </section>
+    <div class="homenotice"><strong style="font-size: 19px;">Note<span><img src="https://www.petrolpumpdealerchayan.in/assets/images/newicon.gif">&nbsp;</span> :</strong> <marquee id="scroll_news2" direction="left" scrollamount="4" onmouseover="this.setAttribute('scrollamount', 0, 0);" onmouseout="this.setAttribute('scrollamount', 4, 0);" scrolldelay="">
+      <div style="font-size: 19px; color: red; font-weight:bold;" onmouseover="document.getElementById('scroll_news2').stop();" onmouseout="document.getElementById('scroll_news2').start();">
+          Due to Covid-19 outbreak and nationwide lockdown dealer selection activities have been put on hold temporarily. &nbsp;&nbsp;
+          Due to Covid-19 outbreak and nationwide lockdown dealer selection activities have been put on hold temporarily. &nbsp;&nbsp;
+
+      </div></marquee></div>
+      <h2>PRODUCTS</h2>
+
+</div>
+  
+  <div class="row ml-3">
+    {% for i in products %}
+    <div class="col-md-3 p-4">
+  <div class="card" id="card1">
+    <img class="card-img-top" src="{{ i.image.url }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ i.name }}</h5>
+      <p class="card-text">{{ i.discriptiom }}</p>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{ i.id }}" name="pid">
+      <button type="submit" class="btn btn-outline-dark"><a href="{% url 'email' %}">Book Now</button></a>
+      </form>
+    
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+
+{% endblock %}
+

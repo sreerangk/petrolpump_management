@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block sighnup %}
+{% load crispy_forms_tags %}
+
+
+      <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+  
+                <form  method="post" class="p-3 ">
+                  {% csrf_token %}
+                  {% if msg %}
+                  <div class="alert alert-success w-50 my-2 text-center">
+                   <strong>{{ msg }}</strong>
+                   </div>
+   
+                   {% endif %}
+   
+                  <div class="form-group ">
+                    
+                          <label >Name</label>
+                          <input type="text"class="form-control" name="name" >
+                    
+                      
+                       <label >Email</label>
+                       <input type="text"class="form-control" name="email" >
+                 
+   
+                 
+                   <label >Phone</label>
+                   <input type="text"class="form-control" name="mob" >
+           
+             
+                   <label >password</label>
+                   <input type="password"class="form-control" name="pass1" >
+        
+              
+                   <label >password2</label>
+                   <input type="password"class="form-control" name="rpass"  >
+        
+                   <input type="submit"class="btn btn-dark mt-2 " value="Save changes" >
+                 
+               </div>
+                   
+               </form>
+                   
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+  
+  {% endblock %}
+
+
