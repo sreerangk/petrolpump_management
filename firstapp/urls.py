@@ -18,5 +18,8 @@ urlpatterns = [
     path('editpro',views.editpro, name='editpro'),
     path('editauth',views.editauth, name='editauth'),
     path('email',views.email, name='email'),
-
+    path('adminlogin',views.adminlogin, name='adminlogin'),
+    path('oderdelete/<int:pk>',views.oderdelete, name='oderdelete'),
+    path('prodectinsert',views.prodectinsert , name='prodectinsert'),
+    path('productdelete/<int:pk>',views.productdelete , name='productdelete'),
 ] 

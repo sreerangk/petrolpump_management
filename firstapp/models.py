@@ -24,7 +24,7 @@ class u_dp(models.Model):
 class product(models.Model):
     name=models.CharField(max_length=200)
     discriptiom=models.CharField(max_length=200)
-    image=models.ImageField(upload_to='product_img',)
+    image=models.ImageField(upload_to='product_img')
 
 class order(models.Model):
     product=models.ForeignKey(product,on_delete=models.CASCADE)

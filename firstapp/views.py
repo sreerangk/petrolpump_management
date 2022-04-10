@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
 from .models import order, u_dp, user_tbl,product
-from.forms import UserRegistarForm,user_profile
+from.forms import UserRegistarForm,user_profile,productform
 
 
 # Create your views here.
@@ -217,3 +217,38 @@ def email(request):
 
 
     return render(request, "email.html",context )
+
+
+
+    #admin....................................................
+
+
+def adminlogin(request):
+    products=order.objects.all()
+
+    return render(request, "adminlogin.html",{'products': products })
+
+def oderdelete(request,pk):
+    products=order.objects.get(id=pk)
+    products.delete()
+    return redirect('adminlogin')
+
+@login_required
+def prodectinsert(request): 
+    products=product.objects.all()
+    if request.method=='POST':
+        form=productform(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('prodectinsert')
+    else:
+        form=productform()
+
+        
+    context={'form':form,'products':products }
+    return render(request, "prodectinsert.html",context)
+
+def productdelete(request,pk):
+    products=product.objects.get(id=pk)
+    products.delete()
+    return redirect('prodectinsert' )
