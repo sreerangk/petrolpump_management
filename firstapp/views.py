@@ -1,9 +1,10 @@
 from multiprocessing import context
+from turtle import update
 from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import User,auth
 from django.contrib.auth.decorators import login_required
-from .models import order, u_dp, user_tbl,product
-from.forms import UserRegistarForm,user_profile,productform
+from .models import addnews2, order, u_dp,product,User,addnews
+from.forms import productform
 
 
 # Create your views here.
@@ -11,14 +12,16 @@ def base(request):
     return render(request, "base.html")
 
 def index(request):
+    nw=addnews2.objects.all()
     data=u_dp.objects.all()
+    news=addnews.objects.all()
     products=product.objects.all()
     try:
         data=u_dp.objects.get(userdt__id=request.user.id)
      
     except u_dp.DoesNotExist:
         user = None
-    context={'data':data, 'products':products}
+    context={'data':data, 'products':products, 'news':news,'news2':nw }
     return render(request, "index.html" , context )
 
 
@@ -49,8 +52,10 @@ def signup(request):
                 return redirect('login')
         else:
             print('password not matching')
-            return redirect('login')
-    return render(request, 'signup.html')
+            return redirect('signup')
+    else:
+
+        return render(request, 'signup.html')
 
 
 
@@ -160,7 +165,7 @@ def userpro(request):
 
 
 @login_required(login_url='login')
-def  editauth(request):
+def editauth(request):
     data=u_dp.objects.get(userdt__id=request.user.id)
     context={}
     context['data']=data
@@ -187,8 +192,9 @@ def  editauth(request):
         return render(request,'userpro.html', context)
     return render(request,'editpro.html', context)
 
-@login_required(login_url='login')
-def email(request): 
+
+def email(request,pk): 
+    x=pk
     data=u_dp.objects.all()
     
     try:
@@ -196,18 +202,17 @@ def email(request):
      
     except u_dp.DoesNotExist:
         user = None
-    context={'data':data,}
+    context={'data':data}
 
     if request.user.is_authenticated:
         if request.method=="POST":
-            print(request.POST)
-           
+            print(request.POST)           
             qty=request.POST['qty']
             mail=request.POST['email']
             name=request.user.id
             sub=request.POST['sub']
             print(qty)
-            products=get_object_or_404(product,id=1)
+            products=get_object_or_404(product,id=x)
             print(product)
             usr=get_object_or_404(User,id=request.user.id)
             print(usr)
@@ -216,7 +221,7 @@ def email(request):
             orders.save()
 
 
-    return render(request, "email.html",context )
+    return render(request,'email.html',context )
 
 
 
@@ -233,7 +238,7 @@ def oderdelete(request,pk):
     products.delete()
     return redirect('adminlogin')
 
-@login_required
+@login_required(login_url='login')
 def prodectinsert(request): 
     products=product.objects.all()
     if request.method=='POST':
@@ -252,3 +257,67 @@ def productdelete(request,pk):
     products=product.objects.get(id=pk)
     products.delete()
     return redirect('prodectinsert' )
+
+def productedit(request,pk):   
+    products=product.objects.get(id=pk)
+    if request.method=='POST':
+        form=productform(request.POST,request.FILES,instance=products)
+        if form.is_valid():
+            form.save()
+            return redirect('prodectinsert')
+    else:
+        form=productform(instance=products) 
+    context={'form':form}    
+    return render(request,'productedit.html',context )
+
+@login_required(login_url='login')
+def productdetails(request,pk):
+
+    products=product.objects.filter(id=pk)
+    data=u_dp.objects.all()
+    
+    try:
+        data=u_dp.objects.get(userdt__id=request.user.id)
+     
+    except u_dp.DoesNotExist:
+        user = None
+ 
+    context={'products':products,'data':data}
+    return render(request, 'productdetails.html',context)
+        
+def news(request):
+    nw=addnews.objects.all()
+    if request.method=="POST":
+        t=request.POST['TITLE']
+        news=addnews(title=t)
+        news.save() 
+        return redirect( 'index' ) 
+
+    return render(request, 'news.html',{'news':nw})
+
+
+def newsdelete(request,pk):
+    news=addnews.objects.get(id=pk)
+    news.delete()
+    return redirect('news')
+
+
+
+def news2(request):
+    nw=addnews2.objects.all()
+    if request.method=="POST":
+        t=request.POST['NOTS']
+        news2=addnews2(title2=t)
+        news2.save() 
+        return redirect( 'index' ) 
+
+    return render(request,'news2.html',{'news2':nw})
+
+def newsdelete(request,pk):
+    news2=addnews2.objects.get(id=pk)
+    news2.delete()
+    return redirect('news2')
+
+
+def cart(request):
+    return render(request,'cart.html')

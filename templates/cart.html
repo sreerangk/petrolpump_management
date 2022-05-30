@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block login %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+<h2>HTML Table</h2>
+
+<table>
+  <tr>
+    <th>PRODUCT</th>
+    <th>NAME</th>
+    <th>UNIT PRICE</th>
+    <th>QUANTITY</th>
+    <th>TOTAL</th>
+  </tr>
+  <tr>
+    <td>{{ i.product.productname }}</td>
+    <td>{{ i.product.price }}</td>
+    <td>Germany</td>
+  </tr>
+
+</table>
+{% endblock %}

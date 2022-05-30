@@ -77,10 +77,14 @@
       <div class="maincontent px-5">    
         <div class="homemaintxt"> 
 
-            <div class="homenotice"><strong style="font-size: 19px;">Notice :</strong> <marquee id="scroll_news" direction="left" scrollamount="" onmouseover="this.setAttribute('scrollamount', 0, 0);" onmouseout="this.setAttribute('scrollamount', 4, 0);" scrolldelay="">
+            <div class="homenotice"><strong style="font-size: 19px;">Notice :</strong> 
+              {% for i in news %}
+              <marquee id="scroll_news" direction="left" scrollamount="" onmouseover="this.setAttribute('scrollamount', 0, 0);" onmouseout="this.setAttribute('scrollamount', 4, 0);" scrolldelay="">
                     <div style="font-size: 19px; color: red;" onmouseover="document.getElementById('scroll_news').stop();" onmouseout="document.getElementById('scroll_news').start();">
-                        Applicants are advised to make all payments like application fees, initial security deposit only through this website. Oil companies are not responsible for any payment made through any other mode/website.
+                      {{ i.title }}
                     </div></marquee></div> 
+
+                    {% endfor %}
 
             <h2>Dealerships for Regular & Rural Retail Outlets (Petrol Pump)</h2>
             <p>Network expansion has been an important business activity of PSU Oil Marketing Companies (OMCs) for increasing the reach of petroleum products across the country. 
@@ -100,28 +104,32 @@
               </div>
           </div>
     </section>
-    <div class="homenotice"><strong style="font-size: 19px;">Note<span><img src="https://www.petrolpumpdealerchayan.in/assets/images/newicon.gif">&nbsp;</span> :</strong> <marquee id="scroll_news2" direction="left" scrollamount="4" onmouseover="this.setAttribute('scrollamount', 0, 0);" onmouseout="this.setAttribute('scrollamount', 4, 0);" scrolldelay="">
+    <div class="homenotice"><strong style="font-size: 19px;">Note<span><img src="https://www.petrolpumpdealerchayan.in/assets/images/newicon.gif">&nbsp;</span> :</strong> 
+      {% for i in news2 %}
+      <marquee id="scroll_news2" direction="left" scrollamount="4" onmouseover="this.setAttribute('scrollamount', 0, 0);" onmouseout="this.setAttribute('scrollamount', 4, 0);" scrolldelay="">
       <div style="font-size: 19px; color: red; font-weight:bold;" onmouseover="document.getElementById('scroll_news2').stop();" onmouseout="document.getElementById('scroll_news2').start();">
-          Due to Covid-19 outbreak and nationwide lockdown dealer selection activities have been put on hold temporarily. &nbsp;&nbsp;
-          Due to Covid-19 outbreak and nationwide lockdown dealer selection activities have been put on hold temporarily. &nbsp;&nbsp;
+        {{i.title2}}    
 
       </div></marquee></div>
+
+     
+      </div>
+      {% endfor %}
       <h2>PRODUCTS</h2>
 
-</div>
+
   
   <div class="row ml-3">
     {% for i in products %}
     <div class="col-md-3 p-4">
-  <div class="card" id="card1">
-    <img class="card-img-top" src="{{ i.image.url }}" alt="Card image cap">
+  <div class="" id="">
+    <a href="{% url 'productdetails' i.id %}" ><img class="img-thumbnail" src="{{ i.image.url }}"  alt="Card image cap"></a>
     <div class="card-body">
       <h5 class="card-title">{{ i.name }}</h5>
-      <p class="card-text">{{ i.discriptiom }}</p>
       <form method="POST">
         {% csrf_token %}
         <input type="hidden" value="{{ i.id }}" name="pid">
-      <button type="submit" class="btn btn-outline-dark"><a href="{% url 'email' %}">Book Now</button></a>
+      <button type="submit" class="btn btn-outline-dark"><a href="{% url 'email' i.id %}">Book Now</button></a>
       </form>
     
 

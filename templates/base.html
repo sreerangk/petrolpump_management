@@ -53,20 +53,18 @@
 
 
 <body>
-<div class="nav1">
+<div class="nav1 ">
 
 <a href="{% url 'index' %}"><img class="nav_head" src="https://iocl.com/assets/images/logo.gif" ></a>
-<img class="nav_head2" src="https://www.petrolpumpdealerchayan.in/assets/images/logoimg.jpg ">
-<img class="nav_head3" src="https://www.bharatpetroleum.in/images/bh-gas-logo.png">
-<img class="nav_3" src="https://www.mdpi.com/img/design/mdpi-pub-logo-blue-small4.png?fff78193ca41c286 ">
+
 </div>
 
  <!-- nav_bar -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light py-md-3">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-md-3 my-auto">
+    <a class="navbar-brand " href="#"></a>
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -86,6 +84,14 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'prodectinsert' %}">Add Products</a>
         </li>
+              
+       <li class="nav-item ">
+        <a class="nav-link" href="{% url 'news' %}">Edit news</a>
+       </li>
+                 
+       <li class="nav-item ">
+        <a class="nav-link" href="{% url 'news2' %}">Edit Notes</a>
+       </li>
         {% elif user.is_authenticated %}
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
@@ -99,6 +105,7 @@
           <a class="nav-link" href="{% url 'Service' %}">Service</a>
         </div>
       </li>
+
         
         {% else %}
 
@@ -109,10 +116,6 @@
           <a class="nav-link" href="{% url 'signup' %}">Signup</a>
         </li>
         <li class="nav-item ">
-         <li class="nav-item active">
-            <a class="nav-link" href="{% url 'login' %}">Admin</a>
-          </li>
-
           <a class="nav-link" href="{% url 'Service' %}">Service</a>
         </div>
       </li>
@@ -126,6 +129,7 @@
       
     
         {% if user.is_authenticated %}
+        <i class="fa fa-shopping-cart pl-1 " aria-hidden="true" href="{% url 'cart' %}"></i>
         {% if data.dp %} 
        
         <a href="{% url 'userpro' %}"><img src="{{ data.dp.url }}"  class="mr-3 rounded-circle"  style="height:40px; width:40px" alt="dp"></a>
@@ -137,6 +141,7 @@
         {% endif %}
 
   </nav>
+
 {% block index  %} 
 {% endblock %}
 {% block login %}
@@ -185,3 +190,4 @@
 
 </html>
 
+  

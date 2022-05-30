@@ -1,4 +1,5 @@
 from tkinter import CASCADE
+from turtle import title
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import FilePathField
@@ -32,3 +33,12 @@ class order(models.Model):
     quantity=models.IntegerField()
     subject=models.CharField(max_length=30)
     userid=models.ForeignKey(User,on_delete=models.CASCADE)
+
+class addnews(models.Model):
+    title=models.CharField(max_length=250)
+
+
+
+class addnews2(models.Model):
+    title2=models.CharField(max_length=250)
+    

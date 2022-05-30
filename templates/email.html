@@ -9,7 +9,7 @@
           <div class="container h-100">
             <div class="card" style="border-radius: 15px;">
                 <div class="card-body p-5">
-        <form class="form-container" action="{% url 'email' %}" method="post">
+        <form class="form-container" action="" method="post">
             {% csrf_token %}	
         <div class="form-group">
           <h4 class="text-center font-weight-bold">REQUEST FORM</h4>
@@ -26,7 +26,6 @@
             <label for="InputPassword1">SUBJECT</label>
             <textarea type="text" class="form-control" row="comment"  id="InputPassword1" placeholder="" name="sub"></textarea>
           </div>
-          
         <button type="submit" class="btn btn-primary btn-block">DONE</button>
         <div class="form-footer">        
 

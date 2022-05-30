@@ -24,6 +24,7 @@
                         <th>Description</th>
                         <th>Image</th>
                         <th>Delete</th>
+                        <th>Edit</th>
                      
                     </tr>
                 </thead>
@@ -34,12 +35,15 @@
                         <td>{{i.discriptiom}}</td>
                         <td><img src="{{ i.image.url }}"  class="mr-3 rounded-circle"  style="height:50px; width:50px" alt="dp"></td>
                         <td>
-                         <a class="btn btn-danger" href=" {% url 'productdelete' i.id %} "> 
-                            <i class="fa fa-trash "> 
-                                
-                            </i> 
+                         <a class="btn btn-danger btn-lg" href=" {% url 'productdelete' i.id %} ">              
+                            Delete
                          </a>
                         </td>
+                        <td>
+                            <a class="btn btn-info btn-lg" href=" {% url 'productedit' i.id %} "> 
+                                <span class="glyphicon glyphicon-edit"></span> Edit 
+                            </a>
+                           </td>
                     </tr>
                     {% endfor %}
                 </tbody>

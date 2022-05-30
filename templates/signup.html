@@ -10,7 +10,7 @@
               <div class="card-body p-5">
                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
   
-                <form  method="post" class="p-3 ">
+                <form action="{% url 'signup' %}" method="post" class="p-3 ">
                   {% csrf_token %}
                   {% if msg %}
                   <div class="alert alert-success w-50 my-2 text-center">
@@ -41,12 +41,13 @@
                    <label >password2</label>
                    <input type="password"class="form-control" name="rpass"  >
         
-                   <input type="submit"class="btn btn-dark mt-2 " value="Save changes" >
+                   <input type="submit"class="btn btn-dark mt-2 " value="Save    " >
                  
-               </div>
+                </div>
+                
                    
                </form>
-                   
+              </div>
               </div>
               </div>
             </div>
