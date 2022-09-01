@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.forms import FilePathField
 
 
-# Create your models here.
+# Create your models here. 
 class user_tbl(models.Model):
     uname=models.CharField(max_length=200)
     uemail=models.EmailField()
