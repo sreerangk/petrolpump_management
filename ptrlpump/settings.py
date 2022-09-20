@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'ptrlpump.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'petrolpump',
+        'NAME': 'petrolpump_',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',   
